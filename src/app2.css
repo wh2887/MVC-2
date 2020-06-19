@@ -1,0 +1,25 @@
+.app2 {
+}
+
+.app2 .tab-bar {
+  display: flex;
+}
+
+.app2 .tab-bar > li {
+  border: 3px solid black;
+  width: 50%;
+}
+
+/*如果这个li是selected，就有{}里面的样式*/
+.app2 .tab-bar > li.selected {
+  background-color: saddlebrown;
+  color: white;
+}
+
+.app2 .tab-content > li {
+  display: none;
+}
+
+.app2 .tab-content > li.active {
+  display: block;
+}

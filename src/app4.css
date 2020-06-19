@@ -1,0 +1,23 @@
+.app4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+@keyframes change {
+  0%{
+    background: slateblue;
+  }
+  100%{
+    background: pink;
+  }
+}
+.app4 .circle{
+  border: 1px solid black;
+  width: 20vw;
+  height: 20vw;
+  border-radius: 50%;
+}
+.app4 .circle.active{
+  animation: change 1s infinite alternate linear;
+}

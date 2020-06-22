@@ -11344,7 +11344,6 @@ var c = {
   },
   events: {
     'click #add1': 'add',
-    //  click #add1 的时候，调用 add 函数
     'click #minus1': 'minus',
     'click #mul2': 'mul',
     'click #divide2': 'div'
@@ -11378,8 +11377,7 @@ var c = {
       v.el.on(part1, part2, value);
     }
   }
-}; //初始化HTML => 第一次渲染HTML
-
+};
 var _default = c;
 exports.default = _default;
 },{"./app1.css":"app1.css","jquery":"../node_modules/jquery/dist/jquery.js"}],"app2.css":[function(require,module,exports) {
@@ -11657,7 +11655,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55859" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50879" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -11833,4 +11831,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
-//# sourceMappingURL=https://wh2887.github.io/MVC-2/dist/main.1f19ae8e.js.map
+//# sourceMappingURL=/main.1f19ae8e.js.map

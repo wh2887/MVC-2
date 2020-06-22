@@ -1,12 +1,11 @@
 {
-  "name": "MVC-1",
+  "name": "MVC-2",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": "git@github.com:wh2887/MVC-2.git",
+  "author": "wh2887 <1059511459@qq.com>",
   "license": "MIT",
   "dependencies": {
     "jquery": "^3.5.1"
-  },
-  "devDependencies": {
-    "cssnano": "^4.1.10"
   }
 }

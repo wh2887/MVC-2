@@ -53,7 +53,7 @@ const c = {
     })
   },
   events: {
-    'click #add1': 'add',    //  click #add1 的时候，调用 add 函数
+    'click #add1': 'add',
     'click #minus1': 'minus',
     'click #mul2': 'mul',
     'click #divide2': 'div',
@@ -80,5 +80,4 @@ const c = {
     }
   }
 }
-//初始化HTML => 第一次渲染HTML
 export default c

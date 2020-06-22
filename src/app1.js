@@ -1,13 +1,21 @@
 import './app1.css'
 import $ from 'jquery'
-
+const eventBus = $(window)
 // m => Model 数据模型  负责所有数据
 const m = {
   data: {
     n: parseFloat(localStorage.getItem('number'))
-  }
+  },
+  create(){},
+  delete(){},
+  update(data){
+    localStorage.setItem('number',(m.data.n).toString())
+    Object.assign(m.data,data)//意思是把data的数据一个一个的给m的data
+    //如果m更新了，他就会触发一个我更新了
+    eventBus.trigger('m-updated')
+  },
+  get(){}
 }
-
 // v => View  视图  负责 UI界面
 const v = {
   el: null,
@@ -26,43 +34,51 @@ const v = {
 `,
   init(container) {
     v.el = $(container)
-    v.render()
   },
-  render() {
-    if (v.el.children().length === 0){}
-     else {
+  render(n) {
+    if (v.el.children().length === 0) {} else {
       v.el.empty()
     }
-    $(v.html.replace('{{n}}', m.data.n)).prependTo(v.el)
+    $(v.html.replace('{{n}}', n)).appendTo(v.el)
   }
 }
-
 // c => Controller  控制器 负责其他
 const c = {
   init(container) {
     v.init(container)
-    c.bindEvents()
+    v.render(m.data.n)  // 第一次 view = render(data)
+    c.autoBindEvents()
+    eventBus.on('m-updated',()=>{
+      v.render(m.data.n)
+    })
   },
-  bindEvents() {
-    v.el.on('click', '#add1', () => {
-      localStorage.setItem('number', (m.data.n += 1).toString())
-      v.render()
-    })
-    v.el.on('click', '#minus1', () => {
-      localStorage.setItem('number', (m.data.n -= 1).toString())
-      v.render()
-    })
-    v.el.on('click', '#mul2', () => {
-      m.data.n *= 2
-      localStorage.setItem('number', (m.data.n *= 2).toString())
-      v.render()
-    })
-    v.el.on('click', '#divide2', () => {
-      localStorage.setItem('number', (m.data.n /= 2).toString())
-      v.render()
-    })
+  events: {
+    'click #add1': 'add',    //  click #add1 的时候，调用 add 函数
+    'click #minus1': 'minus',
+    'click #mul2': 'mul',
+    'click #divide2': 'div',
+  },
+  add() {
+    m.update({n:m.data.n += 1})
+  },
+  minus() {
+    m.update({n:m.data.n -= 1})
+  },
+  mul() {
+    m.update({n:m.data.n *= 2})
+  },
+  div() {
+    m.update({n:m.data.n /= 2})
+  },
+  autoBindEvents(){
+    for( let key in c.events){
+      const value = c[c.events[key]]
+      const spaceIndex = key.indexOf(' ')
+      const part1 = key.slice(0,spaceIndex)
+      const part2 = key.slice(spaceIndex+1)
+      v.el.on(part1,part2,value)
+    }
   }
 }
-
 //初始化HTML => 第一次渲染HTML
 export default c
